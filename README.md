@@ -1,46 +1,74 @@
-# GBStack Hub - Girish Lade's Portfolio
+# GBStack Hub — Girish Lade's Portfolio
 
-Welcome to the source code for **GBStack Hub**, the personal portfolio of Girish Lade. This project is a showcase of my skills in web development, design, and AI integration. It's built with a modern, production-ready tech stack and features several interactive components.
+A modern, single-page personal portfolio and project hub for **Girish Lade**, built with Next.js 15 App Router, TypeScript, Tailwind CSS and shadcn/ui. Showcases projects, skills and an AI-powered tool-niche suggester.
 
-## About The Project
+## Features
 
-This website serves as a central hub for my professional work and personal projects. The goal is to present a clean, fast, and engaging user experience that reflects my passion for building high-quality applications.
+- **Hero + About sections** — Animated, editorial-style landing for the portfolio owner
+- **Featured Projects** — Curated project cards with descriptions, images and links
+- **GitHub Integration** — Server-fetched latest public repositories of `girishlade111` (revalidated hourly)
+- **AI Tool Suggester** — Interactive Genkit + Gemini AI flow that analyzes tech trends and suggests profitable niches for new developer tools
+- **Interactive Skills Showcase** — Organized by domain (Frontend, UI/UX, AI, Backend)
+- **Contact Form** — Validated with React Server Actions (Zod schema)
+- **Responsive Design** — Mobile-first, works on all screen sizes
 
-### Key Features
+## Tech Stack
 
-*   **Responsive Design**: A beautiful, modern interface that works seamlessly on all devices, from mobile phones to desktops.
-*   **Featured Projects**: A curated list of my most significant projects, complete with descriptions, images, and links.
-*   **GitHub Integration**: Dynamically fetches and displays my latest public repositories from GitHub.
-*   **AI-Powered Niche Suggester**: An interactive AI tool that analyzes tech trends and suggests profitable niches for new developer tools. It leverages Genkit and the Gemini API.
-*   **Interactive Skills Showcase**: A clear and organized presentation of my technical skills across different domains like Frontend, UI/UX, AI, and Backend.
-*   **Contact Form**: A fully functional contact form using React Server Actions for seamless communication.
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS, shadcn/ui |
+| Icons | Lucide React |
+| AI | Google Genkit + Gemini API (`src/ai/flows`) |
+| Validation | Zod |
+| Deployment | Firebase App Hosting (`apphosting.yaml`) |
 
-## Tech Stack & Architecture
+## Project Structure
 
-This project is built on a foundation of modern, industry-standard technologies.
+```
+src/
+├── ai/                 # Genkit AI flows (Gemini)
+│   ├── genkit.ts
+│   └── flows/          # e.g. suggest-profitable-ai-tools
+├── app/                # Next.js App Router
+│   ├── page.tsx        # Home page (hero, projects, skills, contact)
+│   ├── actions.ts      # Server actions (contact form)
+│   ├── layout.tsx
+│   └── globals.css
+└── components/
+    ├── sections/       # hero, about, skills, projects, ai-suggester, contact
+    ├── ui/             # shadcn/ui primitives
+    ├── header.tsx
+    └── footer.tsx
+```
 
-*   **Framework**: [Next.js](https://nextjs.org/) (with App Router)
-*   **Language**: [TypeScript](https://www.typescriptlang.org/)
-*   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-*   **UI Components**: [ShadCN/UI](https://ui.shadcn.com/)
-*   **Generative AI**: [Google's Genkit](https://firebase.google.com/docs/genkit) with the [Gemini API](https://ai.google.dev/docs)
-*   **Icons**: [Lucide React](https://lucide.dev/guide/packages/lucide-react)
-*   **Deployment**: Hosted on Firebase App Hosting.
+## Quick Start
 
-The application leverages Next.js Server Components and Server Actions to optimize performance and reduce client-side JavaScript, ensuring a fast and efficient experience.
+```bash
+git clone https://github.com/girishlade111/GBStack-Hub.git
+cd GBStack-Hub
+npm install
+npm run dev
+# open http://localhost:9002
+```
 
-## Getting Started
+### Environment Variables
 
-To get started with the project locally:
+The AI suggester requires a Gemini API key:
 
-1.  Clone the repository.
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  Run the development server:
-    ```bash
-    npm run dev
-    ```
+```
+GEMINI_API_KEY=your-gemini-api-key
+```
 
-The application will be available at `http://localhost:9002`.
+Without it, the AI tool-suggester section will fail gracefully; the rest of the site works normally.
+
+## Deploy Notes
+
+- Designed for Firebase App Hosting (see `apphosting.yaml`).
+- Uses React Server Actions and Genkit AI flows — **not statically exportable**; requires a Node runtime.
+- For Netlify/Vercel: deploy as a standard Next.js SSR app with `GEMINI_API_KEY` set.
+
+---
+
+Built by Girish Lade — [ladestack.in](https://ladestack.in)
